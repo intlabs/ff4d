@@ -105,9 +105,9 @@ print "*************************************************************************
 print ""
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-ak', '--app_key', help='app_key', action='store_true', default=False)
-parser.add_argument('-as', '--app_secret', help='app_secret', action='store_true', default=False)
-parser.add_argument('-c', '--authorization_code', help='authorization_code, obtained from: https://www.dropbox.com/1/oauth2/authorize?response_type=code&client_id=<app_key>', action='store_true', default=False)
+parser.add_argument('-ak', '--app_key', help='app_key', default=False)
+parser.add_argument('-as', '--app_secret', help='app_secret', default=False)
+parser.add_argument('-c', '--authorization_code', help='authorization_code, obtained from: https://www.dropbox.com/1/oauth2/authorize?response_type=code&client_id=<app_key>', default=False)
 
 args = parser.parse_args()
 
