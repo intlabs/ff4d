@@ -103,17 +103,17 @@ print "* http://blog.schmidt.ps                                                 
 print "********************************************************************************"
 print ""
 
-  parser = argparse.ArgumentParser()
-  parser.add_argument('-ak', '--app_key', help='app_key', action='app_key', default=False)
-  parser.add_argument('-as', '--app_secret', help='app_secret', action='app_secret', default=False)
-  parser.add_argument('-c', '--authorization_code', help='authorization_code, obtained from: https://www.dropbox.com/1/oauth2/authorize?response_type=code&client_id=<app_key>', action='authorization_code', default=False)
+parser = argparse.ArgumentParser()
+parser.add_argument('-ak', '--app_key', help='app_key', action='app_key', default=False)
+parser.add_argument('-as', '--app_secret', help='app_secret', action='app_secret', default=False)
+parser.add_argument('-c', '--authorization_code', help='authorization_code, obtained from: https://www.dropbox.com/1/oauth2/authorize?response_type=code&client_id=<app_key>', action='authorization_code', default=False)
 
-  args = parser.parse_args()
+args = parser.parse_args()
 
-  # Set variables supplied by commandline.
-  app_key = args.app_key
-  app_secret = args.app_secret
-  code = args.authorization_code
+# Set variables supplied by commandline.
+app_key = args.app_key
+app_secret = args.app_secret
+code = args.authorization_code
 
 #app_key = raw_input("1.) Enter your 'App key': ").strip()
 #app_secret = raw_input("2.) Enter your 'App secret': ").strip()
