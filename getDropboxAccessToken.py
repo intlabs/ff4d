@@ -103,15 +103,27 @@ print "* http://blog.schmidt.ps                                                 
 print "********************************************************************************"
 print ""
 
-app_key = raw_input("1.) Enter your 'App key': ").strip()
-app_secret = raw_input("2.) Enter your 'App secret': ").strip()
-authorize_url = "https://www.dropbox.com/1/oauth2/authorize?response_type=code&client_id=" + app_key
+  parser = argparse.ArgumentParser()
+  parser.add_argument('-ak', '--app_key', help='app_key', action='app_key', default=False)
+  parser.add_argument('-as', '--app_secret', help='app_secret', action='app_secret', default=False)
+  parser.add_argument('-c', '--authorization_code', help='authorization_code, obtained from: https://www.dropbox.com/1/oauth2/authorize?response_type=code&client_id=<app_key>', action='authorization_code', default=False)
 
-print "3.) Now open this url and confirm the requested permission."
-print ""
-print authorize_url
-print ""
-code = raw_input("4.) Enter the given access code': ").strip()
+  args = parser.parse_args()
+
+  # Set variables supplied by commandline.
+  app_key = args.app_key
+  app_secret = args.app_secret
+  code = args.authorization_code
+
+#app_key = raw_input("1.) Enter your 'App key': ").strip()
+#app_secret = raw_input("2.) Enter your 'App secret': ").strip()
+#authorize_url = "https://www.dropbox.com/1/oauth2/authorize?response_type=code&client_id=" + app_key
+
+#print "3.) Now open this url and confirm the requested permission."
+#print ""
+#print authorize_url
+#print ""
+#code = raw_input("4.) Enter the given access code': ").strip()
 
 ar = apiRequest()
 result = "" 
@@ -136,9 +148,19 @@ print ""
 # Validate the access_token and show some user informations.
 try:
   account_info = ar.get('https://api.dropbox.com/1/account/info')
+  scriptpath = os.path.dirname(sys.argv[0])
+  f = open(scriptpath + '/ff4d.config', 'w')
+  f.write(access_token)
+  f.close()
+  os.chmod(scriptpath + '/ff4d.config', 0600)
+  print "Wrote accesstoken to configuration file.\n"
 except Exception, e:
   print "Could not validate the new access token. (" + str(e) + ")\n"
+  print "or Could not write configuration file.\n"
   sys.exit(-1)
+
+
+
 
 print "- Your account -"
 print "Display name   : " + account_info['display_name']

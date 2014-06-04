@@ -1,3 +1,7 @@
+This is a work in progress to optimise for use in docker
+
+
+
 '''FUSE Filesystem 4 Dropbox''' is a FUSE plugin whichs allows a local mount of your
 global Dropbox or jailed application folder.
 
