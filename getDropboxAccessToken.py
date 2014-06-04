@@ -110,14 +110,6 @@ class apiRequest():
       print_exc()
       raise Exception, 'apiRequest failed. Unknown exception: ' + str(e)
 
-print ""
-print "********************************************************************************"
-print "* This script helps you to fetch an access token for your Dropbox application. *"
-print "*                                                                              *"
-print "* Copyright 2014 by Sascha Schmidt <sascha@schmidt.ps>                         *"
-print "* http://blog.schmidt.ps                                                       *"
-print "********************************************************************************"
-print ""
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-ak', '--app_key', help='app_key', default=False)
@@ -130,6 +122,25 @@ args = parser.parse_args()
 app_key = args.app_key
 app_secret = args.app_secret
 code = args.authorization_code
+
+authorize_url = "https://www.dropbox.com/1/oauth2/authorize?response_type=code&client_id=" + app_key
+
+print ""
+print "********************************************************************************"
+print "*                                                                              *"
+print "* This script helps you to fetch an access token for your Dropbox application. *"
+print "* Open this url and confirm the requested permission.                          *"
+print "*                                                                              *"
+print "********************************************************************************"
+print ""
+print authorize_url
+print ""
+print "********************************************************************************"
+print "*                                                                              *"
+print "*                                                                              *"
+print "********************************************************************************"
+print ""
+
 
 #app_key = raw_input("1.) Enter your 'App key': ").strip()
 #app_secret = raw_input("2.) Enter your 'App secret': ").strip()
