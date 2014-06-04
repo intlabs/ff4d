@@ -1,5 +1,20 @@
 #!/usr/bin/python
 
+# Copyright (c) 2014 Pete Birley <petebirley@gmail.com>
+# http://cannycomputing.net
+#
+# Permission to use, copy, modify, and distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
 # Copyright (c) 2014 Sascha Schmidt <sascha@schmidt.ps> (author)
 # http://blog.schmidt.ps
 #
@@ -753,8 +768,8 @@ if __name__ == '__main__':
 
   # Check for an existing configuration file.
   try:
-    scriptpath = os.path.dirname(sys.argv[0])
-    f = open(scriptpath + '/ff4d.config', 'r')
+    #scriptpath = os.path.dirname(sys.argv[0])
+    f = open('~/.ff4d.config', 'r')
     access_token = f.readline()
     if debug == True: appLog('debug', 'Got accesstoken from configuration file: ' + access_token)
   except:
@@ -793,11 +808,11 @@ if __name__ == '__main__':
   # Save valid access token to configuration file.
   if args.access_token_temp == False:
     try:
-      scriptpath = os.path.dirname(sys.argv[0])
-      f = open(scriptpath + '/ff4d.config', 'w')
+      #scriptpath = os.path.dirname(sys.argv[0])
+      f = open('~/.ff4d.config', 'w')
       f.write(access_token)
       f.close()
-      os.chmod(scriptpath + '/ff4d.config', 0600)
+      os.chmod('~/.ff4d.config', 0600)
       if debug == True: appLog('debug', 'Wrote accesstoken to configuration file.\n')
     except Exception, e:
       appLog('error', 'Could not write configuration file.', str(e))
@@ -807,9 +822,9 @@ if __name__ == '__main__':
   print "Space used: " + str(account_info['quota_info']['normal']/1024/1024/1024) + " GB"
   print "Space available: " + str(account_info['quota_info']['quota']/1024/1024/1024) + " GB"
   print ""
-  print "Starting FUSE..."
+  print "Starting dropbox FUSE..."
   try:
     FUSE(Dropbox(ar), mountpoint, foreground=args.background, debug=debug_fuse, sync_read=True, allow_other=allow_other, allow_root=allow_root)
   except:
-    appLog('error', 'Failed to start FUSE...')
+    appLog('error', 'Failed to start dropbox FUSE...')
     sys.exit(-1)

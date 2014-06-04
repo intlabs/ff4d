@@ -1,4 +1,19 @@
 #!/usr/bin/python
+# Copyright (c) 2014 Pete Birley <petebirley@gmail.com>
+# http://cannycomputing.net
+#
+# Permission to use, copy, modify, and distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
 # Copyright (c) 2014 Sascha Schmidt <sascha@schmidt.ps>
 # http://blog.schmidt.ps
 #
@@ -149,11 +164,11 @@ print ""
 # Validate the access_token and show some user informations.
 try:
   account_info = ar.get('https://api.dropbox.com/1/account/info')
-  scriptpath = os.path.dirname(sys.argv[0])
-  f = open(scriptpath + '/ff4d.config', 'w')
+  #scriptpath = os.path.dirname(sys.argv[0])
+  f = open('~/.ff4d.config', 'w')
   f.write(access_token)
   f.close()
-  os.chmod(scriptpath + '/ff4d.config', 0600)
+  os.chmod('~/.ff4d.config', 0600)
   print "Wrote accesstoken to configuration file.\n"
 except Exception, e:
   print "Could not validate the new access token. (" + str(e) + ")\n"
