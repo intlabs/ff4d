@@ -808,11 +808,11 @@ if __name__ == '__main__':
   # Save valid access token to configuration file.
   if args.access_token_temp == False:
     try:
-      #scriptpath = os.path.dirname(sys.argv[0])
-      f = open('~/.ff4d.config', 'w')
+      scriptpath = os.path.dirname(sys.argv[0])
+      f = open(scriptpath + '/ff4d.config', 'w')
       f.write(access_token)
       f.close()
-      os.chmod('~/.ff4d.config', 0600)
+      os.chmod(scriptpath + '/ff4d.config', 0600)
       if debug == True: appLog('debug', 'Wrote accesstoken to configuration file.\n')
     except Exception, e:
       appLog('error', 'Could not write configuration file.', str(e))

@@ -164,11 +164,11 @@ print ""
 # Validate the access_token and show some user informations.
 try:
   account_info = ar.get('https://api.dropbox.com/1/account/info')
-  #scriptpath = os.path.dirname(sys.argv[0])
-  f = open('~/.ff4d.config', 'w')
+  scriptpath = os.path.dirname(sys.argv[0])
+  f = open(scriptpath + '/ff4d.config', 'w')
   f.write(access_token)
   f.close()
-  os.chmod('~/.ff4d.config', 0600)
+  os.chmod(scriptpath + '/ff4d.config', 0600)
   print "Wrote accesstoken to configuration file.\n"
 except Exception, e:
   print "Could not validate the new access token. (" + str(e) + ")\n"
